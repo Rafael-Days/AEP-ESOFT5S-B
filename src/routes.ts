@@ -11,11 +11,11 @@ routes.put('/consultas/:id', consultaController.update)
 routes.delete('/consultas/:id', consultaController.delete)
 
 //PACIENTE
-routes.post('/pacientes', pacienteController.create)
-routes.get('/pacientes', pacienteController.findAll)
-routes.get('/pacientes/:id', pacienteController.findById)
-routes.put('/pacientes/:id', pacienteController.update)
-routes.delete('/pacientes/:id', pacienteController.delete)
+routes.post('/paciente', pacienteController.create)
+routes.get('/paciente', pacienteController.findAll)
+routes.get('/paciente/:id', pacienteController.findById)
+routes.put('/paciente/:id', pacienteController.update)
+routes.delete('/paciente/:id', pacienteController.delete)
 
 export {
     routes
