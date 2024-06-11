@@ -23,7 +23,8 @@ class consultaService {
             tipoConsulta: consulta.tipoConsulta,
             paciente: consulta.paciente,
             medico: consulta.medico,
-            dataHora: consulta.dataHora
+            dataHora: consulta.dataHora,
+            descricao: consulta.descricao
         }, { new: true })
 
         return updatedconsulta
