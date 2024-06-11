@@ -18,7 +18,7 @@ class App {
 
     public async database() {
         try {
-            await mongoose.connect('mongodb://127.0.0.1:27017/livros-api');
+            await mongoose.connect('mongodb://127.0.0.1:27017/aep');
             console.log('Conectado com a base de dados')
         } catch (error) {
             console.error("Erro ao conectar com a base de dados:", error)
