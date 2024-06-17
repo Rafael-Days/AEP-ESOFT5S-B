@@ -13,3 +13,5 @@ Explicações:
 ->  Relatórios LightHouse na pasta: (Metricas)
 
 ->  Pesquisa e Métricas na pasta: (Metricas)
+
+->  Estrutura de dados: https://replit.com/@ra-22257558-2/AEP
