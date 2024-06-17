@@ -10,4 +10,6 @@ Explicações:
 
 ->  AFD e GR na pasta: (Teoria da Computação)
 
-->  Relatórios LightHouse na pasta: (LightHouse)
+->  Relatórios LightHouse na pasta: (Metricas/LightHouse)
+
+->  Pesquisa e Métricas na pasta: (Metricas)
