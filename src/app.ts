@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { routes } from './routes'
 
 class App {
-    public express: express.Application
+    public express: express.App
 
     constructor() {
         this.express = express()
