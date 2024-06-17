@@ -8,4 +8,6 @@ Explicações:
 
 ->  aplicação WEB (CRUD) - Front, back, banco. Tudo pronto. Utilizando HTML5, CSS3, JavaScript, NodeJS (TypeScript e Express).
 
-->  AFD e GR(Teoria da Computação)
+->  AFD e GR na pasta: (Teoria da Computação)
+
+->  Relatórios LightHouse na pasta: (LightHouse)
