@@ -1,42 +1,39 @@
-import pacienteModel from '../schemas/paciente.schema'
-import { pacienteType } from '../types/paciente.type'
+import { openDb } from '../../database';
+import { PacienteType } from '../types/paciente.type';
 
-class pacienteService {
-
-    async create(paciente: pacienteType) {
-        const createdpaciente = await pacienteModel.create(paciente)
-        return createdpaciente
+class PacienteService {
+    async create(paciente: PacienteType) {
+        const db = await openDb();
+        const result = await db.run(
+            'INSERT INTO Paciente (nomePaciente, idade) VALUES (?, ?)',
+            paciente.nomePaciente, paciente.idade
+        );
+        return { id: result.lastID, ...paciente };
     }
-
     async findAll() {
-        const findedpacientes = await pacienteModel.find()
-        return findedpacientes
+        const db = await openDb();
+        return db.all('SELECT * FROM Paciente');
     }
 
-    async findById(id: string) {
-        const findedpaciente = await pacienteModel.findById(id)
-        return findedpaciente
+    async findById(id: number) {
+        const db = await openDb();
+        return db.get('SELECT * FROM Paciente WHERE id = ?', id);
     }
 
-    async update(id: string, paciente: pacienteType) {
-        const updatedpaciente = await pacienteModel.findByIdAndUpdate(id, {
-            nomePaciente: paciente.nomePaciente,
-            idade: paciente.idade
-        }, { new: true })
-
-        return updatedpaciente
+    async update(id: number, paciente: PacienteType) {
+        const db = await openDb();
+        await db.run(
+            'UPDATE Paciente SET nomePaciente = ?, idade = ? WHERE id = ?',
+            paciente.nomePaciente, paciente.idade, id
+        );
+        return { id, ...paciente };
     }
 
-    async delete(id: string) {
-        try {
-            await pacienteModel.findByIdAndDelete(id)
-            return "paciente removido com sucesso"
-        } catch (error) {
-            throw new Error(`Ocorreu um erro ao remover o paciente: ${error}`)
-        }
+    async delete(id: number) {
+        const db = await openDb();
+        await db.run('DELETE FROM Paciente WHERE id = ?', id);
+        return 'Paciente removido com sucesso';
     }
-
 }
 
-
-export default new pacienteService()
+export default new PacienteService();

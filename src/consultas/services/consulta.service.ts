@@ -1,45 +1,40 @@
-import consultaModel from '../schemas/consulta.schema'
-import { consultaType } from '../types/consulta.type'
+import { openDb } from '../../database';
+import { consultaType } from '../types/consulta.type';
 
-class consultaService {
-
+class ConsultaService {
     async create(consulta: consultaType) {
-        const createdconsulta = await consultaModel.create(consulta)
-        return createdconsulta
+        const db = await openDb();
+        const result = await db.run(
+            'INSERT INTO Consulta (tipoConsulta, pacienteId, medico, dataHora, descricao) VALUES (?, ?, ?, ?, ?)',
+            consulta.tipoConsulta, consulta.pacienteId, consulta.medico, consulta.dataHora, consulta.descricao
+        );
+        return { id: result.lastID, ...consulta };
     }
 
     async findAll() {
-        const findedconsultas = await consultaModel.find()
-        return findedconsultas
+        const db = await openDb();
+        return db.all('SELECT * FROM Consulta');
     }
 
-    async findById(id: string) {
-        const findedconsulta = await consultaModel.findById(id)
-        return findedconsulta
+    async findById(id: number) {
+        const db = await openDb();
+        return db.get('SELECT * FROM Consulta WHERE id = ?', id);
     }
 
-    async update(id: string, consulta: consultaType) {
-        const updatedconsulta = await consultaModel.findByIdAndUpdate(id, {
-            tipoConsulta: consulta.tipoConsulta,
-            paciente: consulta.paciente,
-            medico: consulta.medico,
-            dataHora: consulta.dataHora,
-            descricao: consulta.descricao
-        }, { new: true })
-
-        return updatedconsulta
+    async update(id: number, consulta: consultaType) {
+        const db = await openDb();
+        await db.run(
+            'UPDATE Consulta SET tipoConsulta = ?, pacienteId = ?, medico = ?, dataHora = ?, descricao = ? WHERE id = ?',
+            consulta.tipoConsulta, consulta.pacienteId, consulta.medico, consulta.dataHora, consulta.descricao, id
+        );
+        return { id, ...consulta };
     }
 
-    async delete(id: string) {
-        try {
-            await consultaModel.findByIdAndDelete(id)
-            return "Consulta removida com sucesso"
-        } catch (error) {
-            throw new Error(`Ocorreu um erro ao remover a consulta: ${error}`)
-        }
+    async delete(id: number) {
+        const db = await openDb();
+        await db.run('DELETE FROM Consulta WHERE id = ?', id);
+        return 'Consulta removida com sucesso';
     }
-
 }
 
-
-export default new consultaService()
+export default new ConsultaService();

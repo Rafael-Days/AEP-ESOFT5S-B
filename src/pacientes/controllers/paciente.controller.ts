@@ -1,36 +1,31 @@
-import { Request, Response } from 'express'
-import pacienteService from "../services/paciente.service"
+import { Request, Response } from 'express';
+import PacienteService from '../services/paciente.service';
 
-class pacienteController {
+class PacienteController {
     async create(req: Request, res: Response) {
-        const createdpaciente = await pacienteService.create(req.body)
-        res.status(201)
-        return res.json(createdpaciente)
+        const createdPaciente = await PacienteService.create(req.body);
+        res.status(201).json(createdPaciente);
     }
 
-    async findAll(req: Request, res: Response) {
-        const findedpacientes = await pacienteService.findAll()
-        res.status(200)
-        return res.json(findedpacientes)
+    async findAll(res: Response) {
+        const pacientes = await PacienteService.findAll();
+        res.status(200).json(pacientes);
     }
 
     async findById(req: Request, res: Response) {
-        const findedpaciente = await pacienteService.findById(req.params.id)
-        res.status(200)
-        return res.json(findedpaciente)
+        const paciente = await PacienteService.findById(Number(req.params.id));
+        res.status(200).json(paciente);
     }
 
     async update(req: Request, res: Response) {
-        const updatedpaciente = await pacienteService.update(req.params.id, req.body)
-        res.status(200)
-        return res.json(updatedpaciente)
+        const updatedPaciente = await PacienteService.update(Number(req.params.id), req.body);
+        res.status(200).json(updatedPaciente);
     }
 
     async delete(req: Request, res: Response) {
-        const deleted = await pacienteService.delete(req.params.id)
-        res.status(200)
-        return res.json(deleted)
+        const message = await PacienteService.delete(Number(req.params.id));
+        res.status(200).json({ message });
     }
 }
 
-export default new pacienteController()
+export default new PacienteController();

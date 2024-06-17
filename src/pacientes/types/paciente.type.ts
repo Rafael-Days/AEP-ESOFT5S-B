@@ -1,4 +1,4 @@
-export interface pacienteType {
-    nomePaciente: String,
-    idade: Number
+export interface PacienteType {
+    nomePaciente: string;
+    idade: number;
 }

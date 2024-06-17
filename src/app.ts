@@ -1,32 +1,49 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import { routes } from './routes'
+import express from 'express';
+import { openDb } from './database';
+import { routes } from './routes';
 
 class App {
-    public express: express.App
+    public express: express.Application;
 
     constructor() {
-        this.express = express()
-        this.middleware()
-        this.database()
-        this.routes()
+        this.express = express();
+        this.middleware();
+        this.database();
+        this.routes();
     }
 
-    public middleware() {
-        this.express.use(express.json())
+    private middleware(): void {
+        this.express.use(express.json());
     }
 
-    public async database() {
+    private async database(): Promise<void> {
         try {
-            await mongoose.connect('mongodb://127.0.0.1:27017/aep');
-            console.log('Conectado com a base de dados')
+            const db = await openDb();
+            await db.exec(`
+                CREATE TABLE IF NOT EXISTS Paciente (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nomePaciente TEXT,
+                    idade INTEGER
+                );
+                CREATE TABLE IF NOT EXISTS Consulta (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tipoConsulta TEXT,
+                    pacienteId INTEGER,
+                    medico TEXT,
+                    dataHora TEXT,
+                    descricao TEXT,
+                    FOREIGN KEY (pacienteId) REFERENCES Paciente(id)
+                );
+            `);
+            console.log('Conectado ao banco de dados SQLite');
         } catch (error) {
-            console.error("Erro ao conectar com a base de dados:", error)
+            console.error('Erro ao conectar ao banco de dados:', error);
         }
     }
 
-    public routes() {
-        this.express.use(routes)
+    private routes(): void {
+        this.express.use(routes);
     }
 }
-export default new App().express
+
+export default new App().express;

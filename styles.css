@@ -1,68 +1,129 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    display: flex;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 body {
-    width: 100%;
+    
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    
 }
 
 header {
-    background-color: #31d5de;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    padding: 30px;
+    background-color: #6cc4b9;
+   
 }
-
-main {
+#header {
+ 
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+#consulta-container,#pacientes-container{
+    margin: 50px;
+    color: white;
+    width: 550px;
+    height: auto;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; 
-    padding-top: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
+    align-items: center;
+    flex-direction: column;
+    background-color: #6cc4b9;
+    border-radius: 5px;
+    
+    
 }
-
-main .consulta-container,
-main .pacientes-container {
-    flex: 0 0 calc(33.33% - 20px);
-    max-width: calc(33.33% - 20px); 
-    margin-bottom: 30px; 
-    padding: 20px; 
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+#pacientes-container{
+    margin-top:50px;
 }
-
-main .consulta-container {
-    flex-basis: calc(33.33% - 20px);
-    max-width: calc(33.33% - 20px); 
+#form-consulta,#form-paciente{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 85%;
 }
-
-main div {
-    margin-bottom: 30px; 
-    text-align: center;
-    background-color: #f0f0f0; 
-    border: 1px solid #ccc; 
-    padding: 20px; 
+input{
+    width: 80%;
 }
-
-form button {
-    align-self: flex-end;
-    background-color: #31d5de;
+textarea{
+    width: 82%;
+}
+select {
+    cursor: pointer;
+}
+button{
+    background-color: #6cc4b9;
+    margin-bottom: 25px;
     color: white;
-    border: none; 
-    cursor: pointer; 
-    padding: 10px 20px;
-    margin-top: 10px; 
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: 0.5 ease;
+    cursor: pointer;
+}
+button:hover{
+    opacity: 0.8;
+}
+
+
+label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left; /* Alinhar o texto das labels à esquerda */
+    width: 80%; /* Define a largura para limitar o espaço ocupado */
+}
+
+select,
+input[type="date"] {
+    width: 90%;
+}
+select,input{
+    padding: 8px;
+}
+
+
+
+input {
+    border: 0;
+    cursor: pointer;
+}
+
+
+
+
+
+main {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 0 25%;
+    background-color: #f0f0f0;
+    flex-wrap: wrap;
+}
+
+
+footer {
+ 
+    background-color: #6cc4b9;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 25px 
+   
+
 }

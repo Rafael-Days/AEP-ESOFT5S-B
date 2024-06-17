@@ -1,36 +1,31 @@
-import { Request, Response } from 'express'
-import consultaService from "../services/consulta.service"
+import { Request, Response } from 'express';
+import consultaService from '../services/consulta.service';
 
-class consultaController {
+class ConsultaController {
     async create(req: Request, res: Response) {
-        const createdconsulta = await consultaService.create(req.body)
-        res.status(201)
-        return res.json(createdconsulta)
+        const createdConsulta = await consultaService.create(req.body);
+        res.status(201).json(createdConsulta);
     }
 
-    async findAll(req: Request, res: Response) {
-        const findedconsultas = await consultaService.findAll()
-        res.status(200)
-        return res.json(findedconsultas)
+    async findAll( res: Response) {
+        const consultas = await consultaService.findAll();
+        res.status(200).json(consultas);
     }
 
     async findById(req: Request, res: Response) {
-        const findedconsulta = await consultaService.findById(req.params.id)
-        res.status(200)
-        return res.json(findedconsulta)
+        const consulta = await consultaService.findById(Number(req.params.id));
+        res.status(200).json(consulta);
     }
 
     async update(req: Request, res: Response) {
-        const updatedconsulta = await consultaService.update(req.params.id, req.body)
-        res.status(200)
-        return res.json(updatedconsulta)
+        const updatedConsulta = await consultaService.update(Number(req.params.id), req.body);
+        res.status(200).json(updatedConsulta);
     }
 
     async delete(req: Request, res: Response) {
-        const deleted = await consultaService.delete(req.params.id)
-        res.status(200)
-        return res.json(deleted)
+        const message = await consultaService.delete(Number(req.params.id));
+        res.status(200).json({ message });
     }
 }
 
-export default new consultaController()
+export default new ConsultaController();
