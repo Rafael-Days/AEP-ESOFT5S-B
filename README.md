@@ -6,7 +6,7 @@ Alunos:
 
 Explicações:
 
-->  aplicação WEB (CRUD) - Front, back, banco. Tudo pronto. Utilizando HTML5, CSS3, JavaScript, NodeJS (TypeScript e Express).
+->  aplicação WEB (CRUD) - Front, back, banco. Tudo pronto. Utilizando HTML5, CSS3, JavaScript, NodeJS (TypeScript e Express) e banco relacional.
 
 ->  AFD e GR na pasta: (Teoria da Computação)
 
